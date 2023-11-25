@@ -71,11 +71,9 @@ public class RegistrationWithPageObjectsTest extends TestBase {
    @Test
    void negativRegistrationTest() {
        RegistrationPage registrationPage = registrationTest.openPage()
-               .setFirstName("Masha")
-               .setLastName("Savina")
                .setSubmit();
 
-      registrationPage.checkResult("Student Name", "Olga Savina");
+       registrationPage.checkSubmitButtonBorderColor("border-color", "rgb(0, 98, 204)");
     }
 }
 
