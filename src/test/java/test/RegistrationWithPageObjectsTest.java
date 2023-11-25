@@ -42,5 +42,40 @@ public class RegistrationWithPageObjectsTest extends TestBase {
                 .checkResult("State and City", "NCR Noida");
 
     }
+
+    @Test
+    void minimumFieldsRegistrationTest() {
+        RegistrationPage registrationPage = registrationTest.openPage()
+                .setFirstName("Olga")
+                .setLastName("Savina")
+                .setEmail("olga@savina.com")
+                .setGender("Female")
+                .setUserNumber("7777777777")
+                .setDateOfBirth("31", "October", "2023")
+                .setSubject("Maths")
+                .setHobbiesWrapper("Sports")
+                .setHobbiesWrapper("Reading")
+                .setHobbiesWrapper("Music")
+                .setSubmit();
+
+        registrationPage.checkResult("Student Name", "Olga Savina")
+                .checkResult("Student Email", "olga@savina.com")
+                .checkResult("Gender", "Female")
+                .checkResult("Mobile", "7777777777")
+                .checkResult("Date of Birth", "31 October,2023")
+                .checkResult("Subjects", "Maths")
+                .checkResult("Hobbies", "Sports, Reading, Music");
+
+    }
+
+   @Test
+   void negativRegistrationTest() {
+       RegistrationPage registrationPage = registrationTest.openPage()
+               .setFirstName("Masha")
+               .setLastName("Savina")
+               .setSubmit();
+
+      registrationPage.checkResult("Student Name", "Olga Savina");
+    }
 }
 
