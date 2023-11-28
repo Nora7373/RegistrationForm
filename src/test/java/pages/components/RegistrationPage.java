@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
@@ -21,7 +21,8 @@ public class RegistrationPage {
             currentAddress = $("#currentAddress "),
             selectStateInput = $("#react-select-3-input"),
             selectCityInput = $("#react-select-4-input"),
-            submitInput = $("#submit");
+            submitInput = $("#submit"),
+            tableResponsive = $(".table-responsive");
 
 
     CalendarComponent calendarComponent = new CalendarComponent();
@@ -105,12 +106,12 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkSubmitButtonBorderColor(String cssStyleName, String  color) {
-        $("#submit").shouldHave(cssValue(cssStyleName, color));
+        submitInput.shouldHave(cssValue(cssStyleName, color));
         return this;
     }
 
     public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
+        tableResponsive.$(byText(key)).parent().shouldHave(text(value));
         return this;
     }
 }
